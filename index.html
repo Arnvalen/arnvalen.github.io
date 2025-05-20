@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arnaud Jacot-Descombes – Portfolio & CV</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    nav {
+      background-color: #eaeaea;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #004080;
+      font-weight: 600;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      background-color: white;
+    }
+    h2 {
+      color: #004080;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 0.3rem;
+    }
+    .project {
+      margin-bottom: 2rem;
+    }
+    .project h3 {
+      margin-bottom: 0.2rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1rem;
+      color: #666;
+    }
+    #greeting {
+      font-weight: bold;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Arnaud Valente Jacot-Descombes</h1>
+    <p>Étudiant en Génie Mécanique – EPFL</p>
+  </header>
+
+  <nav>
+    <a href="#cv">CV</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div id="greeting"></div>
+
+    <section id="cv">
+      <h2>CV</h2>
+      <p>Étudiant en dernière année de Bachelor à l'EPFL, à la recherche d’un stage conventionné entre novembre 2025 et septembre 2026. Rigoureux, adaptable, passionné par les systèmes mécaniques et l’automatisation.</p>
+      <ul>
+        <li><strong>Email :</strong> arnaud_jacot@hotmail.com</li>
+        <li><strong>Téléphone :</strong> +41 79 120 08 45</li>
+        <li><strong>Adresse :</strong> Rue du Tunnel 10, 1950 Sion</li>
+        <li><strong>Permis :</strong> Suisse, Permis B</li>
+      </ul>
+    </section>
+
+    <section id="portfolio">
+      <h2>Portfolio</h2>
+
+      <div class="project">
+        <h3>Gripper biomimétique à came spiralée</h3>
+        <p>Conception complète d’un système de préhension inspiré de la nature, modélisé sur Onshape et testé sur des framboises avec succès.</p>
+      </div>
+
+      <div class="project">
+        <h3>Mesure par système laser-LDR</h3>
+        <p>Dispositif Arduino et LDR pour mesurer la déflexion d’une poutre encastrée, en combinant précision angulaire et traitement numérique.</p>
+      </div>
+
+      <div class="project">
+        <h3>Analyse FEM thermique avec éléments Q9</h3>
+        <p>Simulation thermique d’une plaque percée via code MATLAB maison utilisant des éléments finis quadratiques et solveurs parallélisés.</p>
+      </div>
+
+      <div class="project">
+        <h3>Tracking Vidéo & Analyse Dynamique</h3>
+        <p>Suivi de points sur des vidéos haute fréquence pour analyser les modes de vibration de poutres et disques en chute libre.</p>
+      </div>
+
+      <div class="project">
+        <h3>Générateur de Cartes des Vins interactives</h3>
+        <p>Outil Python + LaTeX automatisé pour créer des cartes des vins élégantes, avec choix visuel et export en PDF prêt à l’impression.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Vous pouvez me contacter par email ou LinkedIn. N’hésitez pas à me demander des références ou détails supplémentaires sur les projets !</p>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Arnaud Valente Jacot-Descombes – Portfolio personnel
+  </footer>
+
+  <script>
+    const h = new Date().getHours();
+    const greeting = h < 12 ? "Bonjour" : (h < 18 ? "Bon après-midi" : "Bonsoir");
+    document.getElementById("greeting").textContent = greeting + ", bienvenue sur mon site !";
+  </script>
+</body>
+</html>
