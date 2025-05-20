@@ -713,6 +713,27 @@
       <h2><i class="fas fa-project-diagram"></i> Projets</h2>
       <p>Retrouvez les détails complets de mes projets dans mon <a href="https://github.com/Arnvalen/Portfolio" target="_blank">portfolio GitHub</a>.</p>
       
+      <!-- Ajout des boutons de téléchargement et visualisation pour les projets -->
+      <div class="cv-buttons">
+        <a href="https://raw.githubusercontent.com/Arnvalen/Portfolio/main/Portfolio_ArnaudVJ-D.pdf" class="btn" target="_blank">
+          <i class="fas fa-file-download"></i> Télécharger projets détaillés (PDF)
+        </a>
+        <a href="#projects-viewer" class="btn btn-secondary" id="view-projects-btn">
+          <i class="fas fa-eye"></i> Visualiser mes projets
+        </a>
+      </div>
+      
+      <!-- Projets Viewer (caché par défaut) -->
+      <div id="projects-viewer" style="display: none;">
+        <div class="cv-viewer-header">
+          <h4>Prévisualisation des projets</h4>
+          <button id="close-projects-btn" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <iframe class="cv-iframe" src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Arnvalen/Portfolio/main/Portfolio_ArnaudVJ-D.pdf&embedded=true"></iframe>
+      </div>
+      
       <div class="projects-grid">
         <div class="project-card">
           <div class="project-header">
@@ -937,23 +958,44 @@
     </div>
   </footer>
 
-  <!-- Script pour le visualiseur de CV -->
+  <!-- Script pour les visualiseurs de CV et de projets -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Visualiseur de CV
       const viewCvBtn = document.getElementById('view-cv-btn');
       const closeCvBtn = document.getElementById('close-cv-btn');
       const cvViewer = document.getElementById('cv-viewer');
       
-      viewCvBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        cvViewer.style.display = 'block';
-        // Scroll to viewer
-        cvViewer.scrollIntoView({ behavior: 'smooth' });
-      });
+      if (viewCvBtn && closeCvBtn && cvViewer) {
+        viewCvBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          cvViewer.style.display = 'block';
+          // Scroll to viewer
+          cvViewer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        closeCvBtn.addEventListener('click', function() {
+          cvViewer.style.display = 'none';
+        });
+      }
       
-      closeCvBtn.addEventListener('click', function() {
-        cvViewer.style.display = 'none';
-      });
+      // Visualiseur de projets
+      const viewProjectsBtn = document.getElementById('view-projects-btn');
+      const closeProjectsBtn = document.getElementById('close-projects-btn');
+      const projectsViewer = document.getElementById('projects-viewer');
+      
+      if (viewProjectsBtn && closeProjectsBtn && projectsViewer) {
+        viewProjectsBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          projectsViewer.style.display = 'block';
+          // Scroll to viewer
+          projectsViewer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        closeProjectsBtn.addEventListener('click', function() {
+          projectsViewer.style.display = 'none';
+        });
+      }
     });
   </script>
 </body>
