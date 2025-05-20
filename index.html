@@ -958,9 +958,42 @@
     </div>
   </footer>
 
+  <!-- Préchargement des PDFs -->
+  <link rel="prefetch" href="https://raw.githubusercontent.com/Arnvalen/Portfolio/main/CV_ArnaudVJ-D.pdf">
+  <link rel="prefetch" href="https://raw.githubusercontent.com/Arnvalen/Portfolio/main/Portfolio_ArnaudVJ-D.pdf">
+
   <!-- Script pour les visualiseurs de CV et de projets -->
   <script>
+    // Préchargement des PDFs dès le chargement de la page
     document.addEventListener('DOMContentLoaded', function() {
+      // Fonction pour précharger les PDFs
+      function preloadPDFs() {
+        // Préchargement du CV
+        const cvIframe = document.createElement('iframe');
+        cvIframe.style.display = 'none';
+        cvIframe.src = "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Arnvalen/Portfolio/main/CV_ArnaudVJ-D.pdf&embedded=true";
+        document.body.appendChild(cvIframe);
+        
+        // Préchargement du portfolio de projets
+        const projectsIframe = document.createElement('iframe');
+        projectsIframe.style.display = 'none';
+        projectsIframe.src = "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Arnvalen/Portfolio/main/Portfolio_ArnaudVJ-D.pdf&embedded=true";
+        document.body.appendChild(projectsIframe);
+        
+        // Mise à jour des iframes des visualiseurs quand les données sont préchargées
+        setTimeout(function() {
+          document.querySelector('#cv-viewer iframe').src = cvIframe.src;
+          document.querySelector('#projects-viewer iframe').src = projectsIframe.src;
+          
+          // Suppression des iframes temporaires après chargement
+          document.body.removeChild(cvIframe);
+          document.body.removeChild(projectsIframe);
+        }, 3000); // 3 secondes pour précharger
+      }
+      
+      // Lancer le préchargement
+      preloadPDFs();
+      
       // Visualiseur de CV
       const viewCvBtn = document.getElementById('view-cv-btn');
       const closeCvBtn = document.getElementById('close-cv-btn');
