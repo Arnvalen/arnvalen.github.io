@@ -913,7 +913,7 @@
         <iframe 
           class="cv-iframe"
           loading="lazy"
-          src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FArnvalen%2FPortfolio%40latest%2FPortfolio_ArnaudVJ-D.pdf">
+          src="about:blank">
         </iframe>
         <noscript>
           <p>Votre navigateur ne peut pas afficher le PDF.
@@ -1022,7 +1022,7 @@
         <iframe 
           class="cv-iframe"
           loading="lazy"
-          src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FArnvalen%2FPortfolio%40latest%2FCV_ArnaudVJ-D.pdf">
+          src="about:blank">
         </iframe>
         <noscript>
           <p>Votre navigateur ne peut pas afficher le PDF.
@@ -1221,11 +1221,15 @@
       if (viewCvBtn && closeCvBtn && cvViewer && cvIframe) {
         viewCvBtn.addEventListener('click', function(e) {
           e.preventDefault();
-          const url = window.prefetchedCvUrl || CV_URL;
-          // Si c'est une URL d'objet pré-téléchargé, on l'utilise directement, sinon on utilise l'URL encodée
-          cvIframe.src = window.prefetchedCvUrl 
-            ? VIEWER_URL + encodeURIComponent(url)
-            : VIEWER_URL + encodeURIComponent(CV_URL);
+          
+          // Définir l'URL source pour l'iframe
+          if (window.prefetchedCvUrl) {
+            // URL blob locale pour les utilisateurs qui ont préchargé le PDF
+            cvIframe.src = VIEWER_URL + encodeURIComponent(window.prefetchedCvUrl);
+          } else {
+            // URL directe pour les autres utilisateurs
+            cvIframe.src = VIEWER_URL + encodeURIComponent(CV_URL);
+          }
           
           cvViewer.style.display = 'block';
           // Scroll to viewer
@@ -1234,6 +1238,8 @@
         
         closeCvBtn.addEventListener('click', function() {
           cvViewer.style.display = 'none';
+          // Vider l'iframe pour économiser des ressources
+          cvIframe.src = 'about:blank';
         });
       }
       
@@ -1246,11 +1252,15 @@
       if (viewProjectsBtn && closeProjectsBtn && projectsViewer && projectsIframe) {
         viewProjectsBtn.addEventListener('click', function(e) {
           e.preventDefault();
-          const url = window.prefetchedPortfolioUrl || PORTFOLIO_URL;
-          // Si c'est une URL d'objet pré-téléchargé, on l'utilise directement, sinon on utilise l'URL encodée
-          projectsIframe.src = window.prefetchedPortfolioUrl 
-            ? VIEWER_URL + encodeURIComponent(url)
-            : VIEWER_URL + encodeURIComponent(PORTFOLIO_URL);
+          
+          // Définir l'URL source pour l'iframe
+          if (window.prefetchedPortfolioUrl) {
+            // URL blob locale pour les utilisateurs qui ont préchargé le PDF
+            projectsIframe.src = VIEWER_URL + encodeURIComponent(window.prefetchedPortfolioUrl);
+          } else {
+            // URL directe pour les autres utilisateurs
+            projectsIframe.src = VIEWER_URL + encodeURIComponent(PORTFOLIO_URL);
+          }
           
           projectsViewer.style.display = 'block';
           // Scroll to viewer
@@ -1259,6 +1269,8 @@
         
         closeProjectsBtn.addEventListener('click', function() {
           projectsViewer.style.display = 'none';
+          // Vider l'iframe pour économiser des ressources
+          projectsIframe.src = 'about:blank';
         });
       }
     });
