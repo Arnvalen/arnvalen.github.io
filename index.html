@@ -1187,9 +1187,11 @@
     
     document.addEventListener('DOMContentLoaded', function() {
       // Constantes pour les URLs
-      const CV_URL = "https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/CV_ArnaudVJ-D.pdf";
-      const PORTFOLIO_URL = "https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/Portfolio_ArnaudVJ-D.pdf";
+      const CV_URL = "https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@main/CV_ArnaudVJ-D.pdf";
+      const PORTFOLIO_URL = "https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@main/Portfolio_ArnaudVJ-D.pdf";
       const VIEWER_URL = "https://mozilla.github.io/pdf.js/web/viewer.html?file=";
+      // Polyfill pour Safari / anciens navigateurs
+      window.requestIdleCallback ||= (cb) => setTimeout(cb, 0);
       
       // Pré-téléchargement intelligent qui respecte "Data Saver"
       const canPrefetch = 
@@ -1200,12 +1202,12 @@
         requestIdleCallback(async () => {
           try {
             // Pré-téléchargement du CV
-            const cvBlob = await fetch(CV_URL).then(r => r.blob());
-            window.prefetchedCvUrl = URL.createObjectURL(cvBlob);
+            await fetch(CV_URL, { mode: "cors" });        // stocké dans le cache HTTP
+            window.prefetchedCvReady = true;
             
             // Pré-téléchargement du portfolio
-            const portfolioBlob = await fetch(PORTFOLIO_URL).then(r => r.blob());
-            window.prefetchedPortfolioUrl = URL.createObjectURL(portfolioBlob);
+            await fetch(PORTFOLIO_URL, { mode: "cors" });
+            window.prefetchedPortfolioReady = true;
           } catch (e) {
             console.error("Erreur lors du pré-téléchargement:", e);
           }
@@ -1223,13 +1225,7 @@
           e.preventDefault();
           
           // Définir l'URL source pour l'iframe
-          if (window.prefetchedCvUrl) {
-            // URL blob locale pour les utilisateurs qui ont préchargé le PDF
-            cvIframe.src = VIEWER_URL + encodeURIComponent(window.prefetchedCvUrl);
-          } else {
-            // URL directe pour les autres utilisateurs
-            cvIframe.src = VIEWER_URL + encodeURIComponent(CV_URL);
-          }
+          cvIframe.src = VIEWER_URL + encodeURIComponent(CV_URL);  // déjà en cache si pré-fetch
           
           cvViewer.style.display = 'block';
           // Scroll to viewer
@@ -1254,13 +1250,7 @@
           e.preventDefault();
           
           // Définir l'URL source pour l'iframe
-          if (window.prefetchedPortfolioUrl) {
-            // URL blob locale pour les utilisateurs qui ont préchargé le PDF
-            projectsIframe.src = VIEWER_URL + encodeURIComponent(window.prefetchedPortfolioUrl);
-          } else {
-            // URL directe pour les autres utilisateurs
-            projectsIframe.src = VIEWER_URL + encodeURIComponent(PORTFOLIO_URL);
-          }
+          projectsIframe.src = VIEWER_URL + encodeURIComponent(PORTFOLIO_URL);
           
           projectsViewer.style.display = 'block';
           // Scroll to viewer
