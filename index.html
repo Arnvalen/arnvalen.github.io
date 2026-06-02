@@ -1,1269 +1,603 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="Portfolio et CV d'Arnaud Valente Jacot-Descombes, étudiant en Génie Mécanique à l'EPFL">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#1e40af">
-  <title>Arnaud Jacot-Descombes | Portfolio & CV</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-  <!-- Préchargement des PDFs avec les URLs améliorées -->
-  <link rel="prefetch" href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/CV_ArnaudVJ-D.pdf">
-  <link rel="prefetch" href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/Portfolio_ArnaudVJ-D.pdf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arnvalen Systems — Ingénierie mécanique, développement SaaS et intégration IA. Indépendant basé à Sion, Valais, Suisse.">
+  <meta name="robots" content="index, follow">
+  <title>Arnvalen Systems — Ingénierie &amp; Solutions Numériques</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1e40af;
-      --secondary: #3b82f6;
-      --light: #f7f9fc;
-      --dark: #1e293b;
-      --text: #334155;
-      --border: #e2e8f0;
-      --accent: #ef4444;
+      --primary:       #0F6E56;
+      --primary-dark:  #0b5441;
+      --primary-light: #e8f5f1;
+      --dark:   #1a2332;
+      --text:   #374151;
+      --muted:  #6b7280;
+      --border: #e5e7eb;
+      --light:  #f9fafb;
+      --white:  #ffffff;
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; max-width: 100%; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--light);
       color: var(--text);
+      background: var(--white);
       line-height: 1.6;
-    }
-    
-    /* Ajout de styles pour le mode mobile */
-    body {
-      touch-action: manipulation;
       -webkit-text-size-adjust: 100%;
     }
-    
-    /* Pour éviter les problèmes de débordement sur mobile */
-    * {
-      box-sizing: border-box;
-      max-width: 100%;
-    }
-    
-    /* Adaptation des tailles de texte pour mobile */
-    @media (max-width: 768px) {
-      body {
-        font-size: 15px;
-      }
-      
-      h3 {
-        font-size: 1.2rem;
-      }
-      
-      .project-body p, 
-      .skill-card p, 
-      .cv-item p {
-        font-size: 0.95rem;
-      }
-      
-      /* Réduire les marges sur mobile */
-      .main-container {
-        margin: 1rem auto;
-      }
-      
-      section {
-        margin-bottom: 1.2rem;
-      }
-      
-      /* Améliorer l'accessibilité des liens et boutons sur mobile */
-      .btn, 
-      .contact-item, 
-      nav a {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-      }
-    }
-    
-    /* Header */
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding: 3rem 1rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
-    }
-    
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-    
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-      opacity: 0.9;
-    }
-    
-    /* Navigation */
+
+    /* ── NAV ── */
     nav {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    
-    .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 2rem;
-    }
-    
-    .logo {
-      font-weight: 600;
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    
-    nav a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      transition: color 0.3s;
-      position: relative;
-    }
-    
-    nav a:hover {
-      color: var(--primary);
-    }
-    
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0;
-      height: 2px;
-      background-color: var(--primary);
-      transition: width 0.3s;
-    }
-    
-    nav a:hover::after {
-      width: 100%;
-    }
-    
-    /* Main Container */
-    .main-container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-    }
-    
-    /* Sections */
-    section {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-    
-    section h2 {
-      color: var(--primary);
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border);
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    section h2::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 60px;
-      height: 2px;
-      background-color: var(--primary);
-    }
-    
-    /* Introduction */
-    .intro-container {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-    
-    .intro-text {
-      flex: 1;
-      min-width: 300px;
-    }
-    
-    .intro-text p {
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-    
-    .highlight {
-      color: var(--primary);
-      font-weight: 600;
-    }
-    
-    .quick-links {
-      display: flex;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background-color: var(--primary);
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-    
-    .btn:hover {
-      background-color: var(--dark);
-      transform: translateY(-2px);
-    }
-    
-    .btn-secondary {
-      background-color: white;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-    }
-    
-    .btn-secondary:hover {
-      background-color: var(--light);
-      color: var(--dark);
-      border-color: var(--dark);
-    }
-    
-    /* Skills */
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    
-    .skill-card {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.2rem;
-      transition: all 0.3s;
-    }
-    
-    .skill-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      border-color: var(--secondary);
-    }
-    
-    .skill-card h3 {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--dark);
-      margin-bottom: 0.8rem;
-      font-size: 1.2rem;
-    }
-    
-    .skill-card p {
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-    
-    .skill-list {
-      margin-top: 0.8rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    
-    .skill-tag {
-      background-color: var(--light);
-      color: var(--primary);
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-    
-    /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .project-card {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    .project-header {
-      padding: 1rem;
-      background-color: var(--light);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
     }
-    
-    .project-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.2rem;
-      color: var(--dark);
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
     }
-    
-    .project-body {
-      padding: 1.2rem;
+    .nav-logo img { height: 34px; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text); font-weight: 500;
+      font-size: 0.9rem; transition: color .2s;
     }
-    
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--primary) !important; color: white !important;
+      padding: .45rem 1.2rem; border-radius: 6px; font-weight: 600 !important;
     }
-    
-    .project-tag {
-      background-color: rgba(59, 130, 246, 0.1);
-      color: var(--primary);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
-    
-    /* Contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      transition: all 0.3s;
-    }
-    
-    .contact-item:hover {
-      background-color: var(--light);
-      transform: translateY(-3px);
-    }
-    
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background-color: var(--primary);
-      color: white;
-      font-size: 1.2rem;
-    }
-    
-    .contact-info a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-    
-    /* CV Section */
-    .cv-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .cv-section h3 {
-      color: var(--dark);
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .cv-item {
-      margin-bottom: 1.5rem;
-    }
-    
-    .cv-item h4 {
-      color: var(--primary);
-      margin-bottom: 0.3rem;
-    }
-    
-    .cv-date {
-      font-size: 0.9rem;
-      color: #64748b;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    
-    .cv-details {
-      padding-left: 1rem;
-      border-left: 2px solid var(--border);
-    }
-    
-    /* Language Skills */
-    .language-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    
-    .language-item {
-      padding: 0.8rem;
-      border-radius: 6px;
-      background-color: var(--light);
-    }
-    
-    .language-name {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-    
-    .language-level {
-      font-size: 0.85rem;
-      color: var(--primary);
-      font-weight: 500;
-    }
-    
-    .progress-bar {
-      height: 6px;
-      background-color: #e2e8f0;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    
-    .progress {
-      height: 100%;
-      background-color: var(--primary);
-    }
-    
-    .native { width: 100%; }
-    .c1 { width: 90%; }
-    .b1 { width: 60%; }
-    .a1 { width: 30%; }
-    
-    /* Footer */
-    footer {
-      background-color: var(--dark);
-      color: white;
-      padding: 2rem;
+    .nav-cta:hover { background: var(--primary-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--light);
+      border-bottom: 3px solid var(--primary);
+      padding: 5rem 2rem 4.5rem;
       text-align: center;
     }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: auto;
+    .hero-logo { height: 72px; margin-bottom: 2rem; }
+    .hero h1 {
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      font-weight: 800; color: var(--dark); line-height: 1.2;
+      margin-bottom: 1rem;
     }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 1.5rem 0;
+    .hero h1 em { font-style: normal; color: var(--primary); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 580px; margin: 0 auto 2rem;
     }
-    
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      color: white;
-      transition: all 0.3s;
-      font-size: 1.2rem;
+    .hero-pills {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: .45rem; margin-bottom: 2.5rem;
+    }
+    .pill {
+      background: var(--primary-light); color: var(--primary);
+      padding: .3rem .9rem; border-radius: 20px;
+      font-size: .82rem; font-weight: 500;
+    }
+    .hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .72rem 1.5rem; border-radius: 8px;
+      font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-outline { background: white; color: var(--primary); border: 2px solid var(--primary); }
+    .btn-outline:hover { background: var(--primary-light); transform: translateY(-1px); }
+
+    /* ── SECTIONS ── */
+    section { padding: 4.5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-label {
+      display: inline-block;
+      background: var(--primary-light); color: var(--primary);
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .28rem .8rem; border-radius: 20px; margin-bottom: .7rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700; color: var(--dark); margin-bottom: .6rem;
+    }
+    .section-header p { color: var(--muted); max-width: 540px; margin: 0 auto; font-size: .97rem; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+    .service-card {
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.8rem; position: relative; overflow: hidden;
+      transition: all .2s;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%; background: var(--primary);
+      opacity: 0; transition: opacity .2s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(15,110,86,.1); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon {
+      width: 46px; height: 46px;
+      background: var(--primary-light); color: var(--primary);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1.1rem;
+    }
+    .service-card h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: .55rem; }
+    .service-card p { font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag {
+      background: var(--light); color: var(--text);
+      font-size: .73rem; font-weight: 500;
+      padding: .22rem .6rem; border-radius: 4px; border: 1px solid var(--border);
+    }
+
+    /* ── EXPERTISE ── */
+    #expertise { background: var(--light); }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .expertise-group h3 {
+      font-size: .78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--primary); margin-bottom: .85rem;
+      display: flex; align-items: center; gap: .45rem;
+    }
+    .etag {
+      display: inline-block;
+      background: white; color: var(--text);
+      font-size: .83rem; font-weight: 500;
+      padding: .3rem .7rem; border-radius: 6px;
+      border: 1px solid var(--border); margin: 0 .35rem .35rem 0;
+    }
+
+    /* ── À PROPOS ── */
+    #apropos { background: var(--white); }
+    .apropos-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .apropos-text h2 {
+      font-size: 1.6rem; font-weight: 700; color: var(--dark); margin-bottom: 1.1rem;
+    }
+    .apropos-text p { color: var(--text); line-height: 1.75; margin-bottom: .9rem; font-size: .97rem; }
+    .detail-list { display: flex; flex-direction: column; gap: .9rem; }
+    .detail-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--light); border-radius: 10px; border: 1px solid var(--border);
+    }
+    .detail-item i { color: var(--primary); font-size: 1rem; margin-top: .15rem; flex-shrink: 0; }
+    .detail-item strong {
+      display: block; font-size: .75rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .05em; margin-bottom: .15rem;
+    }
+    .detail-item span { font-weight: 500; color: var(--dark); font-size: .93rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--primary); }
+    #contact .section-label { background: rgba(255,255,255,.2); color: white; }
+    #contact .section-header h2 { color: white; }
+    #contact .section-header p { color: rgba(255,255,255,.75); }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .contact-card {
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+      border-radius: 12px; padding: 1.5rem; text-align: center;
+      text-decoration: none; color: white; display: block; transition: background .2s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,.22); }
+    .contact-card i { font-size: 1.5rem; margin-bottom: .6rem; display: block; }
+    .contact-card strong {
+      display: block; font-size: .75rem; text-transform: uppercase;
+      letter-spacing: .08em; opacity: .7; margin-bottom: .3rem;
+    }
+    .contact-card span { font-size: .93rem; font-weight: 500; word-break: break-all; }
+
+    /* ── IMPRESSUM ── */
+    #impressum { background: var(--dark); padding: 3rem 2rem; }
+    .impressum-inner { max-width: 1100px; margin: 0 auto; }
+    .impressum-label {
+      color: rgba(255,255,255,.35); font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1.5rem;
+    }
+    .impressum-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+    }
+    .impressum-group h4 {
+      color: rgba(255,255,255,.45); font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .08em; margin-bottom: .7rem;
+    }
+    .impressum-group p,
+    .impressum-group a {
+      color: rgba(255,255,255,.8); font-size: .88rem; line-height: 1.75;
       text-decoration: none;
     }
-    
-    .social-icon:hover {
-      transform: translateY(-3px);
-      background-color: var(--primary);
+    .impressum-group a:hover { color: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,.07);
+      padding: 1.4rem 2rem;
     }
-    
-    .copyright {
-      margin-top: 1.5rem;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
     }
-    
-    /* Responsive Design amélioré */
+    .footer-inner p { color: rgba(255,255,255,.35); font-size: .78rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      color: rgba(255,255,255,.35); font-size: .78rem;
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,.75); }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      
-      header p {
-        font-size: 1rem;
-      }
-      
-      .nav-container {
-        flex-direction: column;
-        gap: 0.8rem;
-        padding: 0.8rem;
-      }
-      
-      .nav-links {
-        width: 100%;
-        justify-content: space-between;
-        font-size: 0.9rem;
-      }
-      
-      section {
-        padding: 1.5rem;
-      }
-      
-      .intro-container {
-        flex-direction: column;
-      }
-      
-      .intro-text p {
-        font-size: 1rem;
-        margin-bottom: 0.8rem;
-      }
-      
-      .projects-grid,
-      .skills-container,
-      .contact-grid,
-      .cv-content {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      
-      .skill-card, 
-      .project-card,
-      .contact-item {
-        padding: 0.8rem;
-      }
-      
-      .btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
-      
-      section h2 {
-        font-size: 1.5rem;
-      }
-      
-      .cv-iframe {
-        height: 450px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      
-      .nav-links {
-        gap: 0.6rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .main-container {
-        padding: 0 1rem;
-      }
-      
-      section {
-        padding: 1.2rem;
-      }
-      
-      .quick-links {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .quick-links a {
-        width: 100%;
-      }
-      
-      .cv-iframe {
-        height: 400px;
-      }
-      
-      .contact-info a {
-        font-size: 0.9rem;
-        word-break: break-word;
-      }
-    }
-    
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    section {
-      animation: fadeIn 0.6s ease-out;
-    }
-    
-    /* Dark Mode Toggle */
-    .dark-mode-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: var(--primary);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      z-index: 1000;
-      transition: all 0.3s;
-    }
-    
-    .dark-mode-toggle:hover {
-      transform: rotate(45deg);
-    }
-    
-    #greeting {
-      background-color: rgba(59, 130, 246, 0.1);
-      color: var(--primary);
-      padding: 0.8rem 1.2rem;
-      border-radius: 6px;
-      margin-bottom: 2rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    /* Style pour le visualiseur CV */
-    #cv-viewer {
-      margin: 2rem 0;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-
-    .cv-viewer-header {
-      padding: 0.8rem 1rem;
-      background-color: var(--light);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cv-viewer-header h4 {
-      margin: 0;
-      color: var(--dark);
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--dark);
-      font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-
-    .close-btn:hover {
-      color: var(--accent);
-    }
-
-    .cv-iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
-
-    /* Styles spécifiques pour les boutons de CV */
-    .cv-buttons {
-      display: flex;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-
-    /* Style pour le visualiseur CV */
-    #cv-viewer {
-      margin: 2rem 0;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-
-    .cv-viewer-header {
-      padding: 0.8rem 1rem;
-      background-color: var(--light);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cv-viewer-header h4 {
-      margin: 0;
-      color: var(--dark);
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--dark);
-      font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-
-    .close-btn:hover {
-      color: var(--accent);
-    }
-
-    .cv-iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
-
-    /* Styles spécifiques pour les boutons de CV */
-    .cv-buttons {
-      display: flex;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
+      .nav-links { display: none; }
+      .apropos-grid { grid-template-columns: 1fr; gap: 2rem; }
+      section { padding: 3rem 1.2rem; }
+      .hero { padding: 3.5rem 1.2rem 3rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Arnaud Valente Jacot-Descombes</h1>
-    <p>Étudiant en Génie Mécanique – EPFL</p>
-  </header>
 
-  <nav>
-    <div class="nav-container">
-      <a href="#" class="logo">Accueil</a>
-      <div class="nav-links">
-        <a href="#about">À propos</a>
-        <a href="#skills">Compétences</a>
-        <a href="#projects">Projets</a>
-        <a href="#cv">CV</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <div class="main-container">
-    <div id="greeting"><i class="fas fa-hand-wave"></i> Bienvenue sur ma page web !</div>
-
-    <section id="about">
-      <h2><i class="fas fa-user"></i> À propos</h2>
-      <div class="intro-container">
-        <div class="intro-text">
-          <p>👋 Bonjour, moi c'est <span class="highlight">Arnaud</span> !</p>
-          <p>🇨🇭 Étudiant suisse en dernière année de <span class="highlight">Bachelor en Génie Mécanique</span> à l'<a href="https://www.epfl.ch/fr/" target="_blank">EPFL</a>.</p>
-          <p>🚀 Je m'intéresse à la physique appliquée, aux systèmes embarqués, à la simulation numérique et au prototypage créatif.</p>
-          <p>🔧 J'aime concevoir et construire des systèmes — interfaces Arduino, scripts Python, solveurs par éléments finis ou outils de suivi vidéo.</p>
-          <p>📸 En dehors de mes projets, j'aime le théâtre, la cuisine, le tennis, le ski, et j'expérimente avec l'impression 3D.</p>
-          
-          <div class="quick-links">
-            <a href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/CV_ArnaudVJ-D.pdf" class="btn" target="_blank">
-              <i class="fas fa-file-download"></i> Mon CV (.PDF)
-            </a>
-            <a href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/Portfolio_ArnaudVJ-D.pdf" class="btn" target="_blank">
-              <i class="fas fa-file-download"></i> Mon Portfolio (.PDF)
-            </a>
-            <a href="https://github.com/Arnvalen/Portfolio" class="btn btn-secondary" target="_blank">
-              <i class="fab fa-github"></i> GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2><i class="fas fa-tools"></i> Compétences</h2>
-      <div class="skills-container">
-        <div class="skill-card">
-          <h3><i class="fas fa-code"></i> Programmation</h3>
-          <p>Langages de programmation et environnements de développement</p>
-          <div class="skill-list">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C</span>
-            <span class="skill-tag">MATLAB</span>
-            <span class="skill-tag">Arduino</span>
-            <span class="skill-tag">LaTeX</span>
-            <span class="skill-tag">Git</span>
-          </div>
-        </div>
-        
-        <div class="skill-card">
-          <h3><i class="fas fa-cogs"></i> Simulation et outils</h3>
-          <p>Logiciels de conception et de simulation</p>
-          <div class="skill-list">
-            <span class="skill-tag">COMSOL</span>
-            <span class="skill-tag">Solveurs FEM</span>
-            <span class="skill-tag">OpenCV</span>
-            <span class="skill-tag">Onshape</span>
-            <span class="skill-tag">Fusion 360</span>
-          </div>
-        </div>
-        
-        <div class="skill-card">
-          <h3><i class="fas fa-atom"></i> Sciences appliquées</h3>
-          <p>Domaines scientifiques et d'ingénierie</p>
-          <div class="skill-list">
-            <span class="skill-tag">Mécanique</span>
-            <span class="skill-tag">Thermodynamique</span>
-            <span class="skill-tag">Commande</span>
-            <span class="skill-tag">Traitement du signal</span>
-          </div>
-        </div>
-        
-        <div class="skill-card">
-          <h3><i class="fas fa-hammer"></i> Fabrication</h3>
-          <p>Techniques de prototypage et de fabrication</p>
-          <div class="skill-list">
-            <span class="skill-tag">Découpe laser</span>
-            <span class="skill-tag">Impression 3D FDM</span>
-            <span class="skill-tag">Prototypage électronique</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2><i class="fas fa-project-diagram"></i> Projets</h2>
-      <p>Retrouvez les détails complets de mes projets dans mon <a href="https://github.com/Arnvalen/Portfolio" target="_blank">portfolio GitHub</a>.</p>
-      
-      <!-- Ajout des boutons de téléchargement et visualisation pour les projets -->
-      <div class="cv-buttons">
-        <a href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/Portfolio_ArnaudVJ-D.pdf" class="btn" target="_blank">
-          <i class="fas fa-file-download"></i> Télécharger projets détaillés (PDF)
-        </a>
-        <a href="#projects-viewer" class="btn btn-secondary" id="view-projects-btn">
-          <i class="fas fa-eye"></i> Visualiser mes projets
-        </a>
-      </div>
-      
-      <!-- Projets Viewer (caché par défaut) avec PDF.js au lieu de Google Docs Viewer -->
-      <div id="projects-viewer" style="display: none;">
-        <div class="cv-viewer-header">
-          <h4>Prévisualisation des projets</h4>
-          <button id="close-projects-btn" class="close-btn">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <iframe 
-          class="cv-iframe"
-          loading="lazy"
-          src="about:blank">
-        </iframe>
-        <noscript>
-          <p>Votre navigateur ne peut pas afficher le PDF.
-            <a href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/Portfolio_ArnaudVJ-D.pdf" target="_blank">
-              Téléchargez-le ici
-            </a>.
-          </p>
-        </noscript>
-      </div>
-      
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title"><i class="fas fa-robot"></i> Gripper biomimétique</h3>
-          </div>
-          <div class="project-body">
-            <p>Mécanisme radial imprimé en 3D, basé sur une came spiralée paramétrique, capable de saisir des fruits mous (framboises). Intégration de capteurs de pression et conductivité, contrôlés via Arduino.</p>
-            <div class="project-tags">
-              <span class="project-tag">Arduino</span>
-              <span class="project-tag">Impression 3D</span>
-              <span class="project-tag">Biomimétisme</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title"><i class="fas fa-bullseye"></i> Mesure par système laser-LDR</h3>
-          </div>
-          <div class="project-body">
-            <p>Conception d'un système sans contact pour mesurer la flèche d'une poutre. Utilisation d'un laser monté sur un moteur pas-à-pas (2048 pas/tour) et détection via LDR. Interface Python interactive.</p>
-            <div class="project-tags">
-              <span class="project-tag">Arduino</span>
-              <span class="project-tag">Python</span>
-              <span class="project-tag">Capteurs</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title"><i class="fas fa-temperature-high"></i> Solveur thermique FEM</h3>
-          </div>
-          <div class="project-body">
-            <p>Développement d'un solveur éléments finis en MATLAB pour une plaque trouée chauffée. Maillage adaptatif Q9 généré en coordonnées polaires, calculs vectorisés et parallélisation.</p>
-            <div class="project-tags">
-              <span class="project-tag">MATLAB</span>
-              <span class="project-tag">FEM</span>
-              <span class="project-tag">Simulation</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title"><i class="fas fa-video"></i> Tracking Vidéo & Analyse Dynamique</h3>
-          </div>
-          <div class="project-body">
-            <p>Étude expérimentale du comportement dynamique de 140 disques en PMMA. Suivi vidéo par marqueurs fluorescents, traitement par OpenCV, extraction et analyse des trajectoires.</p>
-            <div class="project-tags">
-              <span class="project-tag">OpenCV</span>
-              <span class="project-tag">Python</span>
-              <span class="project-tag">MATLAB</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title"><i class="fas fa-wine-glass-alt"></i> Générateur de Cartes des Vins</h3>
-          </div>
-          <div class="project-body">
-            <p>Pipeline Python → LaTeX transformant un simple fichier Excel d'inventaire en une carte des vins élégante. Classification par cépage, volume et cave, mise en page automatique.</p>
-            <div class="project-tags">
-              <span class="project-tag">Python</span>
-              <span class="project-tag">LaTeX</span>
-              <span class="project-tag">Automatisation</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="cv">
-      <h2><i class="fas fa-file-alt"></i> Curriculum Vitae</h2>
-      <p>Étudiant en dernière année de Bachelor à l'EPFL, à la recherche d'un stage conventionné entre novembre 2025 et septembre 2026. Rigoureux, adaptable, passionné par les systèmes mécaniques et l'automatisation.</p>
-      
-      <!-- Ajout des boutons de téléchargement et visualisation -->
-      <div class="cv-buttons">
-        <a href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/CV_ArnaudVJ-D.pdf" class="btn" target="_blank">
-          <i class="fas fa-file-download"></i> Télécharger CV (PDF)
-        </a>
-        <a href="#cv-viewer" class="btn btn-secondary" id="view-cv-btn">
-          <i class="fas fa-eye"></i> Visualiser mon CV
-        </a>
-      </div>
-      
-      <!-- CV Viewer (caché par défaut) avec PDF.js au lieu de Google Docs Viewer -->
-      <div id="cv-viewer" style="display: none;">
-        <div class="cv-viewer-header">
-          <h4>Prévisualisation du CV</h4>
-          <button id="close-cv-btn" class="close-btn">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <iframe 
-          class="cv-iframe"
-          loading="lazy"
-          src="about:blank">
-        </iframe>
-        <noscript>
-          <p>Votre navigateur ne peut pas afficher le PDF.
-            <a href="https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@latest/CV_ArnaudVJ-D.pdf" target="_blank">
-              Téléchargez-le ici
-            </a>.
-          </p>
-        </noscript>
-      </div>
-      
-      <div class="cv-content">
-        <div class="cv-section">
-          <h3><i class="fas fa-graduation-cap"></i> Formation</h3>
-          <div class="cv-item">
-            <h4>Bachelor en Génie Mécanique</h4>
-            <span class="cv-date">2021 - 2025</span>
-            <div class="cv-details">
-              <p>École Polytechnique Fédérale de Lausanne (EPFL)</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="cv-section">
-          <h3><i class="fas fa-language"></i> Langues</h3>
-          <div class="language-grid">
-            <div class="language-item">
-              <div class="language-name">
-                <span>Français</span>
-                <span class="language-level">Natif</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress native"></div>
-              </div>
-            </div>
-            
-            <div class="language-item">
-              <div class="language-name">
-                <span>Anglais</span>
-                <span class="language-level">C1</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress c1"></div>
-              </div>
-            </div>
-            
-            <div class="language-item">
-              <div class="language-name">
-                <span>Allemand</span>
-                <span class="language-level">B1</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress b1"></div>
-              </div>
-            </div>
-            
-            <div class="language-item">
-              <div class="language-name">
-                <span>Italien</span>
-                <span class="language-level">A1</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress a1"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2><i class="fas fa-envelope"></i> Contact</h2>
-      <p>N'hésitez pas à me contacter pour plus d'informations sur mes projets ou pour toute opportunité de collaboration !</p>
-      
-      <div class="contact-grid">
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="contact-info">
-            <p>Email</p>
-            <a href="mailto:arnaud.valentejacot-descombes@epfl.ch">arnaud.valentejacot-descombes@epfl.ch</a>
-          </div>
-        </div>
-        
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <div class="contact-info">
-            <p>Téléphone</p>
-            <a href="tel:+41791200845">+41 79 120 08 45</a>
-          </div>
-        </div>
-        
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fab fa-linkedin"></i>
-          </div>
-          <div class="contact-info">
-            <p>LinkedIn</p>
-            <a href="https://www.linkedin.com/in/arnaud-v-026612100" target="_blank">Arnaud Valente J-D</a>
-          </div>
-        </div>
-        
-        <div class="contact-item">
-          <div class="contact-icon">
-            <i class="fab fa-github"></i>
-          </div>
-          <div class="contact-info">
-            <p>GitHub</p>
-            <a href="https://github.com/Arnvalen" target="_blank">Arnvalen</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="Arnvalen-Systems-Logo.png" alt="Arnvalen Systems">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
   </div>
+</nav>
 
-  <footer>
-    <div class="footer-content">
-      <div class="social-links">
-        <a href="mailto:arnaud.valentejacot-descombes@epfl.ch" class="social-icon">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/arnaud-v-026612100" class="social-icon" target="_blank">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://github.com/Arnvalen" class="social-icon" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
+<!-- HERO -->
+<section class="hero">
+  <img src="Arnvalen-Systems-Logo.png" alt="Arnvalen Systems" class="hero-logo">
+  <h1>Ingénierie de précision &amp;<br><em>Solutions numériques intelligentes</em></h1>
+  <p class="hero-sub">
+    Indépendant basé à Sion, Valais — je conçois des solutions techniques sur mesure
+    pour les entreprises industrielles et technologiques, de la simulation à l'application IA.
+  </p>
+  <div class="hero-pills">
+    <span class="pill">Ingénierie mécanique</span>
+    <span class="pill">Simulation numérique</span>
+    <span class="pill">Développement SaaS</span>
+    <span class="pill">Intégration IA</span>
+    <span class="pill">Systèmes embarqués</span>
+  </div>
+  <div class="hero-actions">
+    <a href="#services" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Découvrir les services</a>
+    <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Prendre contact</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Ce que je fais</span>
+      <h2>Services</h2>
+      <p>Des prestations techniques de haut niveau, du prototypage physique à l'application intelligente en production.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+        <h3>Ingénierie &amp; Simulation numérique</h3>
+        <p>
+          Modélisation et analyse de systèmes mécaniques, thermiques et structuraux.
+          Développement de solveurs numériques sur mesure (éléments finis, volumes finis)
+          et validation de conceptions avant prototypage.
+        </p>
+        <div class="tags">
+          <span class="tag">FEM / EF</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">Python</span>
+          <span class="tag">COMSOL</span>
+          <span class="tag">CAO</span>
+          <span class="tag">Thermique</span>
+        </div>
       </div>
-      <div class="copyright">
-        &copy; 2025 Arnaud Valente Jacot-Descombes. Tous droits réservés.
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-microchip"></i></div>
+        <h3>Systèmes embarqués &amp; Automatisation</h3>
+        <p>
+          Conception et développement de systèmes d'acquisition de données,
+          de contrôle et d'automatisation. De la sélection des capteurs
+          au firmware, jusqu'à l'interface de supervision.
+        </p>
+        <div class="tags">
+          <span class="tag">Arduino / C</span>
+          <span class="tag">Capteurs</span>
+          <span class="tag">Acquisition</span>
+          <span class="tag">Python</span>
+          <span class="tag">Prototypage</span>
+          <span class="tag">IoT</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-robot"></i></div>
+        <h3>Développement SaaS &amp; Intégration IA</h3>
+        <p>
+          Conception et développement d'applications métier accessibles en ligne.
+          Intégration de modèles d'intelligence artificielle — grands modèles de langage (LLMs),
+          vision, RAG — pour automatiser et augmenter vos processus métier.
+        </p>
+        <div class="tags">
+          <span class="tag">LLM / RAG</span>
+          <span class="tag">Claude API</span>
+          <span class="tag">OpenAI</span>
+          <span class="tag">API REST</span>
+          <span class="tag">Web app</span>
+          <span class="tag">Automatisation</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-sitemap"></i></div>
+        <h3>Conseil technique &amp; Gestion de projet</h3>
+        <p>
+          Accompagnement dans la définition, le cadrage et le suivi de projets techniques.
+          Audit de systèmes existants, rédaction de spécifications fonctionnelles
+          et coordination entre équipes techniques et décideurs.
+        </p>
+        <div class="tags">
+          <span class="tag">Audit</span>
+          <span class="tag">Spécifications</span>
+          <span class="tag">Suivi projet</span>
+          <span class="tag">Documentation</span>
+          <span class="tag">Conseil</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Compétences</span>
+      <h2>Expertise technique</h2>
+      <p>Une formation d'ingénieur EPFL combinée à une pratique active du développement logiciel et de l'intelligence artificielle.</p>
+    </div>
+    <div class="expertise-grid">
+
+      <div class="expertise-group">
+        <h3><i class="fas fa-code"></i> Langages &amp; Dev</h3>
+        <span class="etag">Python</span>
+        <span class="etag">C / C++</span>
+        <span class="etag">MATLAB</span>
+        <span class="etag">JavaScript</span>
+        <span class="etag">SQL</span>
+        <span class="etag">Git</span>
+        <span class="etag">Typst / LaTeX</span>
+      </div>
+
+      <div class="expertise-group">
+        <h3><i class="fas fa-brain"></i> IA &amp; Data</h3>
+        <span class="etag">LLMs (Claude, GPT)</span>
+        <span class="etag">RAG</span>
+        <span class="etag">Vision par ordinateur</span>
+        <span class="etag">OpenCV</span>
+        <span class="etag">NumPy / Pandas</span>
+        <span class="etag">Prompt engineering</span>
+      </div>
+
+      <div class="expertise-group">
+        <h3><i class="fas fa-calculator"></i> Simulation</h3>
+        <span class="etag">Éléments finis (FEM)</span>
+        <span class="etag">COMSOL</span>
+        <span class="etag">Thermique</span>
+        <span class="etag">Structurale</span>
+        <span class="etag">Traitement du signal</span>
+        <span class="etag">Commande</span>
+      </div>
+
+      <div class="expertise-group">
+        <h3><i class="fas fa-tools"></i> Outils &amp; Fab</h3>
+        <span class="etag">Onshape</span>
+        <span class="etag">Fusion 360</span>
+        <span class="etag">Impression 3D FDM</span>
+        <span class="etag">Découpe laser</span>
+        <span class="etag">Linux</span>
+        <span class="etag">Docker</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="apropos">
+  <div class="section-inner">
+    <div class="apropos-grid">
+      <div class="apropos-text">
+        <h2>Arnaud Valente<br>Jacot-Desombes</h2>
+        <p>
+          Ingénieur indépendant basé à Sion, en Valais, j'interviens à l'interface
+          entre l'ingénierie physique et le développement numérique. Formé en
+          Génie Mécanique à l'EPFL, j'ai développé une expertise complémentaire
+          en développement logiciel et en intelligence artificielle appliquée.
+        </p>
+        <p>
+          Mon positionnement est atypique et volontaire : comprendre les contraintes
+          réelles d'un système industriel <em>et</em> être capable de concevoir
+          l'application intelligente qui l'accompagne. C'est ce que je propose
+          à mes clients — une vision d'ensemble, du composant à l'interface utilisateur.
+        </p>
+        <p>
+          J'interviens en mandats, avec un engagement fort sur la qualité,
+          la transparence et le respect des délais.
+        </p>
+      </div>
+      <div class="detail-list">
+        <div class="detail-item">
+          <i class="fas fa-graduation-cap"></i>
+          <div>
+            <strong>Formation</strong>
+            <span>Bachelor Génie Mécanique, EPFL Lausanne</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong>Localisation</strong>
+            <span>Sion, Valais, Suisse</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-language"></i>
+          <div>
+            <strong>Langues</strong>
+            <span>Français (natif) · Anglais C1 · Allemand B1</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-file-contract"></i>
+          <div>
+            <strong>Mode de collaboration</strong>
+            <span>Mandat sur offre · Régie horaire · Forfait</span>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-clock"></i>
+          <div>
+            <strong>Disponibilité</strong>
+            <span>Disponible — délai à convenir selon projet</span>
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- Script amélioré avec pré-téléchargement intelligent -->
-  <script>
-    // Fix pour le viewport sur iOS
-    (function() {
-      // Ajustement initial
-      const viewportMeta = document.querySelector('meta[name="viewport"]');
-      if (!viewportMeta) return;
-      
-      // Ajustement pour orientation
-      function adjustViewport() {
-        const width = window.innerWidth;
-        if (width <= 480) {
-          // Viewport optimal pour petits écrans
-          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
-        } else {
-          // Viewport standard pour écrans plus grands
-          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
-        }
-      }
-      
-      // Exécuter au chargement et au changement d'orientation
-      window.addEventListener('load', adjustViewport);
-      window.addEventListener('resize', adjustViewport);
-      window.addEventListener('orientationchange', adjustViewport);
-    })();
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      // Constantes pour les URLs
-      const CV_URL = "https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@main/CV_ArnaudVJ-D.pdf";
-      const PORTFOLIO_URL = "https://cdn.jsdelivr.net/gh/Arnvalen/Portfolio@main/Portfolio_ArnaudVJ-D.pdf";
-      const VIEWER_URL = "https://mozilla.github.io/pdf.js/web/viewer.html?file=";
-      // Polyfill pour Safari / anciens navigateurs
-      window.requestIdleCallback ||= (cb) => setTimeout(cb, 0);
-      
-      // Pré-téléchargement intelligent qui respecte "Data Saver"
-      const canPrefetch = 
-        !navigator.connection?.saveData &&
-        (navigator.connection?.effectiveType ?? "4g").includes("4");
-      
-      if (canPrefetch) {
-        requestIdleCallback(async () => {
-          try {
-            // Pré-téléchargement du CV
-            await fetch(CV_URL, { mode: "cors" });        // stocké dans le cache HTTP
-            window.prefetchedCvReady = true;
-            
-            // Pré-téléchargement du portfolio
-            await fetch(PORTFOLIO_URL, { mode: "cors" });
-            window.prefetchedPortfolioReady = true;
-          } catch (e) {
-            console.error("Erreur lors du pré-téléchargement:", e);
-          }
-        });
-      }
-      
-      // Visualiseur de CV
-      const viewCvBtn = document.getElementById('view-cv-btn');
-      const closeCvBtn = document.getElementById('close-cv-btn');
-      const cvViewer = document.getElementById('cv-viewer');
-      const cvIframe = cvViewer?.querySelector('iframe');
-      
-      if (viewCvBtn && closeCvBtn && cvViewer && cvIframe) {
-        viewCvBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          // Définir l'URL source pour l'iframe
-          cvIframe.src = VIEWER_URL + encodeURIComponent(CV_URL);  // déjà en cache si pré-fetch
-          
-          cvViewer.style.display = 'block';
-          // Scroll to viewer
-          cvViewer.scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        closeCvBtn.addEventListener('click', function() {
-          cvViewer.style.display = 'none';
-          // Vider l'iframe pour économiser des ressources
-          cvIframe.src = 'about:blank';
-        });
-      }
-      
-      // Visualiseur de projets
-      const viewProjectsBtn = document.getElementById('view-projects-btn');
-      const closeProjectsBtn = document.getElementById('close-projects-btn');
-      const projectsViewer = document.getElementById('projects-viewer');
-      const projectsIframe = projectsViewer?.querySelector('iframe');
-      
-      if (viewProjectsBtn && closeProjectsBtn && projectsViewer && projectsIframe) {
-        viewProjectsBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          // Définir l'URL source pour l'iframe
-          projectsIframe.src = VIEWER_URL + encodeURIComponent(PORTFOLIO_URL);
-          
-          projectsViewer.style.display = 'block';
-          // Scroll to viewer
-          projectsViewer.scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        closeProjectsBtn.addEventListener('click', function() {
-          projectsViewer.style.display = 'none';
-          // Vider l'iframe pour économiser des ressources
-          projectsIframe.src = 'about:blank';
-        });
-      }
-    });
-  </script>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Travailler ensemble</span>
+      <h2>Prendre contact</h2>
+      <p>Pour toute demande de devis, question technique ou opportunité de collaboration, contactez-moi directement.</p>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:arnaud@arnvalen.ch" class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <strong>Email</strong>
+        <span>arnaud@arnvalen.ch</span>
+      </a>
+      <a href="tel:+41791200845" class="contact-card">
+        <i class="fas fa-phone"></i>
+        <strong>Téléphone</strong>
+        <span>+41 79 120 08 45</span>
+      </a>
+      <a href="https://www.linkedin.com/in/arnaud-v-026612100" target="_blank" rel="noopener" class="contact-card">
+        <i class="fab fa-linkedin"></i>
+        <strong>LinkedIn</strong>
+        <span>Arnaud Valente J-D</span>
+      </a>
+      <a href="https://github.com/Arnvalen" target="_blank" rel="noopener" class="contact-card">
+        <i class="fab fa-github"></i>
+        <strong>GitHub</strong>
+        <span>Arnvalen</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- IMPRESSUM -->
+<section id="impressum">
+  <div class="impressum-inner">
+    <p class="impressum-label">Impressum — Mentions légales</p>
+    <div class="impressum-grid">
+
+      <div class="impressum-group">
+        <h4>Identité</h4>
+        <p>
+          Arnaud Valente Jacot-Desombes<br>
+          Nom commercial : Arnvalen Systems<br>
+          Rue du Tunnel 10<br>
+          1950 Sion (VS), Suisse
+        </p>
+      </div>
+
+      <div class="impressum-group">
+        <h4>Contact</h4>
+        <p>
+          <a href="mailto:arnaud@arnvalen.ch">arnaud@arnvalen.ch</a><br>
+          <a href="tel:+41791200845">+41 79 120 08 45</a><br>
+          <a href="https://arnvalen.ch">arnvalen.ch</a>
+        </p>
+      </div>
+
+      <div class="impressum-group">
+        <h4>Statut légal</h4>
+        <p>
+          Entreprise individuelle non inscrite au Registre du commerce.<br>
+          Non assujetti à la TVA (art.&nbsp;10 LTVA).<br>
+          Droit applicable : droit suisse.<br>
+          For judiciaire : Sion (Valais).
+        </p>
+      </div>
+
+      <div class="impressum-group">
+        <h4>Données &amp; hébergement</h4>
+        <p>
+          Ce site ne collecte aucune donnée personnelle à l'insu
+          de l'utilisateur et n'utilise aucun cookie de traçage.<br>
+          Hébergé via GitHub Pages (GitHub, Inc., USA).
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 Arnaud Valente Jacot-Desombes — Arnvalen Systems, Sion</p>
+    <div class="footer-links">
+      <a href="#impressum">Impressum</a>
+      <a href="mailto:arnaud@arnvalen.ch">Contact</a>
+      <a href="https://github.com/Arnvalen" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
